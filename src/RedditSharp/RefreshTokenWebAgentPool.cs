@@ -26,7 +26,7 @@ namespace RedditSharp
         public RateLimitMode DefaultRateLimitMode { get; set; }
 
         private List<RefreshTokenPoolEntry> poolEntries = new List<RefreshTokenPoolEntry>();
-        private MemoryCache activeAgentsCache = new MemoryCache(new MemoryCacheOptions() { CompactOnMemoryPressure = true });
+        private MemoryCache activeAgentsCache = new MemoryCache(new MemoryCacheOptions() { });
         private static readonly SemaphoreSlim cacheLock = new SemaphoreSlim(1, 1);
 
         private string ClientID;

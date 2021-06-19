@@ -40,7 +40,7 @@ namespace RedditSharp.Web
                 Configuration["RedditRedirectURI"])
             {
                 DefaultRateLimitMode = RedditSharp.RateLimitMode.Burst,
-                DefaultUserAgent = "SnooNotes (by Meepster23)"
+                DefaultUserAgent = "RedditSharp"
             };
 
             services.AddSingleton(webAgentPool);

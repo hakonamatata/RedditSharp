@@ -10,11 +10,10 @@ namespace RedditSharp
     /// </summary>
     /// <typeparam name="TKey">Key type to store agents</typeparam>
     /// <typeparam name="TAgent">Web Agent type. Must inherit from <see cref="IWebAgent"/></typeparam>
-    public class WebAgentPool<TKey, TAgent>
-        where TAgent : IWebAgent
+    public class WebAgentPool<TKey, TAgent> where TAgent : IWebAgent
     {
         private static readonly SemaphoreSlim cacheLock = new SemaphoreSlim(1, 1);
-        private MemoryCache activeAgentsCache = new MemoryCache(new MemoryCacheOptions() { CompactOnMemoryPressure = false });
+        private MemoryCache activeAgentsCache = new MemoryCache(new MemoryCacheOptions() { });
 
         /// <summary>
         /// Returns the <typeparamref name="TAgent"/> corresponding to the <paramref name="key"/>

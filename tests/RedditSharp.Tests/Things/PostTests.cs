@@ -10,6 +10,7 @@ namespace RedditSharp.Tests.Things
     public class PostTests
     {
         private AuthenticatedTestsFixture authFixture;
+
         public PostTests(AuthenticatedTestsFixture authenticatedFixture)
         {
             authFixture = authenticatedFixture;
@@ -42,6 +43,7 @@ namespace RedditSharp.Tests.Things
             Assert.Equal(10, comments.Count);
 
         }
+
         [Fact]
         public async Task GetCommentsWithMoresAsync()
         {
@@ -56,8 +58,6 @@ namespace RedditSharp.Tests.Things
             Assert.NotNull(((Comment)things[0]).Comments[0].More);
 
         }
-
-
 
         [Fact]
         public async Task EnumerateAllComments()
@@ -75,6 +75,7 @@ namespace RedditSharp.Tests.Things
             Assert.Equal(25, commentsList.Count);
 
         }
+
         [Fact]
         public async Task CrosspostParentList()
         {

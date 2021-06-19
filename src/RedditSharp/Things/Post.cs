@@ -36,13 +36,13 @@ namespace RedditSharp.Things
         /// </summary>
         [JsonProperty("spoiler")]
         public bool IsSpoiler { get; set; }
-        
+
         /// <summary>
         /// Returns true if this post is hidden
         /// </summary>
         [JsonProperty("hidden")]
         public bool IsHidden { get; set; }
-        
+
         /// <summary>
         /// Domain of this post.
         /// </summary>
@@ -55,11 +55,11 @@ namespace RedditSharp.Things
         [JsonProperty("is_self")]
         public bool IsSelfPost { get; private set; }
 
-        public IReadOnlyList<Post> CrossPostParents 
-        { 
-            get 
+        public IReadOnlyList<Post> CrossPostParents
+        {
+            get
             {
-                if(_crossPostParents == null)
+                if (_crossPostParents == null)
                 {
                     var builder = ImmutableList.CreateBuilder<Post>();
                     if (RawJson["crosspost_parent_list"] != null)
@@ -74,7 +74,7 @@ namespace RedditSharp.Things
                 }
                 return _crossPostParents;
             }
-            
+
         }
 
         private ImmutableList<Post> _crossPostParents;
@@ -322,7 +322,7 @@ namespace RedditSharp.Things
         /// </summary>
         /// <param name="limit">Maximum number of comments to return. Returned list may be larger than this number though due to <see cref="More"/></param>
         /// <returns></returns>
-        public async Task<List<Thing>> GetCommentsWithMoresAsync(int limit = 0, CommentSort sort = CommentSort.Best, int depth=0)
+        public async Task<List<Thing>> GetCommentsWithMoresAsync(int limit = 0, CommentSort sort = CommentSort.Best, int depth = 0)
         {
             var url = string.Format(GetCommentsUrl, Id);
 
@@ -341,7 +341,7 @@ namespace RedditSharp.Things
                 url = $"{url}&limit={limit}";
             }
 
-            if(depth > 0)
+            if (depth > 0)
             {
                 url = $"{url}&depth={depth}";
             }
@@ -376,7 +376,7 @@ namespace RedditSharp.Things
         {
             return new CommentsEnumarable(WebAgent, this, limitPerRequest);
         }
-#region Static Operations
+        #region Static Operations
         /// <summary>
         /// Sets flair of given post by <paramref name="fullname"/>
         /// </summary>

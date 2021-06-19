@@ -11,7 +11,8 @@ namespace RedditSharp.Things
     public class BannedUser : NotedUser
     {
         /// <inheritdoc />
-        public BannedUser(IWebAgent agent, JToken json) : base(agent, json) {
+        public BannedUser(IWebAgent agent, JToken json) : base(agent, json)
+        {
         }
 
         /// <summary>

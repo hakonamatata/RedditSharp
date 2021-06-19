@@ -20,7 +20,8 @@ namespace RedditSharp.Things
         private const string SetAsUnReadUrl = "/api/unread_message";
 
         /// <inheritdoc />
-        public Comment(IWebAgent agent, JToken json, Thing sender) : base(agent, json) {
+        public Comment(IWebAgent agent, JToken json, Thing sender) : base(agent, json)
+        {
             var data = json["data"];
             Parent = sender;
 
@@ -35,7 +36,7 @@ namespace RedditSharp.Things
 
         /// <inheritdoc />
         internal override JToken GetJsonData(JToken json) => json["data"];
-        
+
         /// <summary>
         /// Prefix for fullname. Includes trailing underscore
         /// </summary>
@@ -111,7 +112,7 @@ namespace RedditSharp.Things
                     {
                         More = (new More(WebAgent, comment));
                     }
-                    
+
                 }
             }
             Comments = subComments.ToArray();
@@ -275,20 +276,23 @@ namespace RedditSharp.Things
         /// <param name="commentFullName">e.g. "t1_12345"</param>
         /// <param name="message"></param>
         /// <returns></returns>
-        public static async Task Reply(IWebAgent webAgent, string commentFullName, string message) {
+        public static async Task Reply(IWebAgent webAgent, string commentFullName, string message)
+        {
             // TODO actual error handling. This just hides the error and returns null
             //try
             //{
-            var json = await webAgent.Post(CommentUrl, new {
+            var json = await webAgent.Post(CommentUrl, new
+            {
                 text = message,
                 thing_id = commentFullName,
                 api_type = "json"
                 //r = Subreddit
             }).ConfigureAwait(false);
-            if (json["json"]["ratelimit"] != null) {
+            if (json["json"]["ratelimit"] != null)
+            {
                 throw new RateLimitException(TimeSpan.FromSeconds(json["json"]["ratelimit"].ValueOrDefault<double>()));
             }
-            
+
 
             //}
             //catch (HttpRequestException ex)

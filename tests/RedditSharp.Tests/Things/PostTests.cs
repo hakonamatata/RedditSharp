@@ -20,7 +20,7 @@ namespace RedditSharp.Tests.Things
         {
             RedditSharp.WebAgent agent = new RedditSharp.WebAgent(authFixture.AccessToken);
             RedditSharp.Reddit reddit = new RedditSharp.Reddit(agent);
-            var post = (Post) await reddit.GetThingByFullnameAsync("t3_5u37lj");
+            var post = (Post)await reddit.GetThingByFullnameAsync("t3_5u37lj");
 
             var comments = await post.GetCommentsAsync(limit: 9);
 

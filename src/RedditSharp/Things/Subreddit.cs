@@ -518,7 +518,7 @@ namespace RedditSharp.Things
 
         private void SetName()
         {
-            if(Url == null) 
+            if (Url == null)
             {
                 Name = ""; return;
             }
@@ -849,11 +849,11 @@ namespace RedditSharp.Things
             {
                 throw new DuplicateLinkException($"Post failed when submitting.  The following link has already been submitted: {((LinkData)data).URL}");
             }
-            else if(json["errors"].Any())
+            else if (json["errors"].Any())
             {
                 throw new Exception(json["errors"][0][0].ToString());
             }
-            
+
             return new Post(WebAgent, await Helpers.GetTokenAsync(WebAgent, new Uri(json["data"]["url"].ToString())).ConfigureAwait(false));
         }
         /// <summary>
@@ -938,10 +938,11 @@ namespace RedditSharp.Things
 
         #region Static Operations
 
-        public static async Task<IEnumerable<ModeratorUser>> GetModeratorsAsync(IWebAgent agent, string subreddit ) {
-            var json = await agent.Get(string.Format(ModeratorsUrl,subreddit)).ConfigureAwait(false);
+        public static async Task<IEnumerable<ModeratorUser>> GetModeratorsAsync(IWebAgent agent, string subreddit)
+        {
+            var json = await agent.Get(string.Format(ModeratorsUrl, subreddit)).ConfigureAwait(false);
             var type = json["kind"].ToString();
-            if(type != "UserList")
+            if (type != "UserList")
             {
                 throw new FormatException("Reddit responded with an object that is not a user listing.");
             }
@@ -949,7 +950,8 @@ namespace RedditSharp.Things
             var data = json["data"];
             var mods = data["children"].ToArray();
             var result = new ModeratorUser[mods.Length];
-            for(var i = 0; i < mods.Length; i++) {
+            for (var i = 0; i < mods.Length; i++)
+            {
                 var mod = new ModeratorUser(agent, mods[i]);
                 result[i] = mod;
             }

@@ -58,9 +58,10 @@ namespace RedditSharp
         private static readonly bool IsMono = Type.GetType("Mono.Runtime") != null;
         private static bool IsOAuth => RootDomain == "oauth.reddit.com";
 
-        static WebAgent() {
+        static WebAgent()
+        {
             //Static constructors are dumb, no likey -Meepster23
-            DefaultUserAgent = string.IsNullOrWhiteSpace( DefaultUserAgent ) ? "" : DefaultUserAgent ;
+            DefaultUserAgent = string.IsNullOrWhiteSpace(DefaultUserAgent) ? "" : DefaultUserAgent;
             Protocol = string.IsNullOrWhiteSpace(Protocol) ? "https" : Protocol;
             RootDomain = string.IsNullOrWhiteSpace(RootDomain) ? "www.reddit.com" : RootDomain;
             DefaultRateLimiter = new RateLimitManager();
@@ -70,7 +71,8 @@ namespace RedditSharp
         /// <summary>
         /// Creates WebAgent with default rate limiter and default useragent.
         /// </summary>
-        public WebAgent() {
+        public WebAgent()
+        {
             UserAgent = DefaultUserAgent;
             RateLimiter = WebAgent.DefaultRateLimiter;
         }
@@ -81,10 +83,11 @@ namespace RedditSharp
         /// <param name="accessToken">Valid access token</param>
         /// <param name="rateLimiter"><see cref="RateLimitManager"/> that controls the rate limit for this instance of the WebAgent. Defaults to the shared, static rate limiter.</param>
         /// <param name="userAgent">Optional userAgent string to override default UserAgent</param>
-        public WebAgent( string accessToken, IRateLimiter rateLimiter = null, string userAgent = "") {
+        public WebAgent(string accessToken, IRateLimiter rateLimiter = null, string userAgent = "")
+        {
             RootDomain = OAuthDomainUrl;
             AccessToken = accessToken;
-            if(rateLimiter == null)
+            if (rateLimiter == null)
             {
                 RateLimiter = WebAgent.DefaultRateLimiter;
             }
@@ -106,25 +109,26 @@ namespace RedditSharp
         public virtual async Task<JToken> ExecuteRequestAsync(Func<HttpRequestMessage> request)
         {
             if (request == null)
-              throw new ArgumentNullException(nameof(request));
+                throw new ArgumentNullException(nameof(request));
             const int maxTries = 20;
             HttpResponseMessage response;
             var tries = 0;
-            do {
-              await RateLimiter.CheckRateLimitAsync(IsOAuth).ConfigureAwait(false);
-              response = await _httpClient.SendAsync(request()).ConfigureAwait(false);
-              await RateLimiter.ReadHeadersAsync(response);
-              ++tries;
-            } while( 
-            // only retry if 500, 502, 503, or 504
-                (response.StatusCode == System.Net.HttpStatusCode.InternalServerError || 
+            do
+            {
+                await RateLimiter.CheckRateLimitAsync(IsOAuth).ConfigureAwait(false);
+                response = await _httpClient.SendAsync(request()).ConfigureAwait(false);
+                await RateLimiter.ReadHeadersAsync(response);
+                ++tries;
+            } while (
+                // only retry if 500, 502, 503, or 504
+                (response.StatusCode == System.Net.HttpStatusCode.InternalServerError ||
                  response.StatusCode == System.Net.HttpStatusCode.BadGateway ||
                  response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable ||
                  response.StatusCode == System.Net.HttpStatusCode.GatewayTimeout)
                 && tries < maxTries
             );
             if (!response.IsSuccessStatusCode)
-              throw new RedditHttpException(response.StatusCode);
+                throw new RedditHttpException(response.StatusCode);
             var result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             JToken json;
@@ -208,21 +212,23 @@ namespace RedditSharp
         /// <inheritdoc />
         public Task<JToken> Post(string url, object data, params string[] additionalFields)
         {
-            return ExecuteRequestAsync(() => {
-                  var request = CreateRequest(url, "POST");
-                  WritePostBody(request, data, additionalFields);
-                  return request;
-                });
+            return ExecuteRequestAsync(() =>
+            {
+                var request = CreateRequest(url, "POST");
+                WritePostBody(request, data, additionalFields);
+                return request;
+            });
         }
 
         /// <inheritdoc />
         public Task<JToken> Put(string url, object data)
         {
-            return ExecuteRequestAsync(() => {
-                  var request = CreateRequest(url, "PUT");
-                  WritePostBody(request, data);
-                  return request;
-                });
+            return ExecuteRequestAsync(() =>
+            {
+                var request = CreateRequest(url, "PUT");
+                WritePostBody(request, data);
+                return request;
+            });
         }
 
         /// <inheritdoc />
@@ -236,7 +242,7 @@ namespace RedditSharp
                 var attr = property.GetCustomAttributes(typeof(RedditAPINameAttribute), false).FirstOrDefault() as RedditAPINameAttribute;
                 string name = attr == null ? property.Name : attr.Name;
                 var entry = Convert.ToString(property.GetValue(data, null));
-                content.Add(new KeyValuePair<string,string>(name, entry));
+                content.Add(new KeyValuePair<string, string>(name, entry));
             }
             for (int i = 0; i < additionalFields.Length; i += 2)
             {
@@ -244,12 +250,13 @@ namespace RedditSharp
                 content.Add(new KeyValuePair<string, string>(additionalFields[i], entry));
             }
             //new FormUrlEncodedContent has a limit on length which can cause issues;
-            request.Content = new StringContent(string.Join("&",content.Select(c=>c.Key + "=" + System.Net.WebUtility.UrlEncode(c.Value))), System.Text.Encoding.UTF8, "application/x-www-form-urlencoded");
+            request.Content = new StringContent(string.Join("&", content.Select(c => c.Key + "=" + System.Net.WebUtility.UrlEncode(c.Value))), System.Text.Encoding.UTF8, "application/x-www-form-urlencoded");
         }
 
         /// <inheritdoc />
-        public Task<HttpResponseMessage> GetResponseAsync(HttpRequestMessage message) {
-          return _httpClient.SendAsync(message);
+        public Task<HttpResponseMessage> GetResponseAsync(HttpRequestMessage message)
+        {
+            return _httpClient.SendAsync(message);
         }
 
 

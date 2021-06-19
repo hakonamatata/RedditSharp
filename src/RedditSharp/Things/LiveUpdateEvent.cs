@@ -28,7 +28,8 @@ namespace RedditSharp.Things
         }
 #pragma warning restore 1591
         /// <inheritdoc />
-        public LiveUpdateEvent(IWebAgent agent, JToken json) : base(agent, json) {
+        public LiveUpdateEvent(IWebAgent agent, JToken json) : base(agent, json)
+        {
             FullName = Name;
             Name = Name.Replace("LiveUpdateEvent_", "");
         }
@@ -181,7 +182,7 @@ namespace RedditSharp.Things
             if (!nsfw.HasValue)
                 nsfw = NSFW;
 
-            dynamic properties = new { title=title,description =description, resources = resources, nsfw = nsfw};
+            dynamic properties = new { title = title, description = description, resources = resources, nsfw = nsfw };
             var request = WebAgent.CreateRequest(EditUrl, "POST");
             WebAgent.WritePostBody(request, properties);
             var response = await WebAgent.GetResponseAsync(request).ConfigureAwait(false);
@@ -292,7 +293,7 @@ namespace RedditSharp.Things
                 api_type = "json",
                 id = user.Kind + "_" + user.Id
             });
-            var response  = await WebAgent.GetResponseAsync(request).ConfigureAwait(false);
+            var response = await WebAgent.GetResponseAsync(request).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
                 return true;
@@ -335,7 +336,7 @@ namespace RedditSharp.Things
                 }
                 throw new InvalidOperationException(message);
             }
-            
+
             var request = WebAgent.CreateRequest(ReportUrl, "POST");
             WebAgent.WritePostBody(request, new
             {

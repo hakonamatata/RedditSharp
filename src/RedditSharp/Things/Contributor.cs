@@ -11,7 +11,8 @@ namespace RedditSharp.Things
     public class Contributor : RelatedUser
     {
         /// <inheritdoc />
-        public Contributor(IWebAgent agent, JToken json) : base(agent, json) {
+        public Contributor(IWebAgent agent, JToken json) : base(agent, json)
+        {
         }
 
         /// <summary>

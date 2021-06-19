@@ -118,7 +118,7 @@ namespace RedditSharp.Tests
         {
             //Arrange
             Expression<Func<AdvancedSearchFilter, bool>>
-                expression = x => x.Author=="AutoModerator" && x.Site == "google.com";
+                expression = x => x.Author == "AutoModerator" && x.Site == "google.com";
             string expected = "(+author:AutoModerator+AND+site:google.com+)";
 
             IAdvancedSearchFormatter searchFormatter = new DefaultSearchFormatter();
@@ -169,7 +169,7 @@ namespace RedditSharp.Tests
         {
             //Arrange
             Expression<Func<AdvancedSearchFilter, bool>>
-                expression = x =>  (x.Title != "trump") && !(x.Author == "AutoModerator" || x.Site == "google.com");
+                expression = x => (x.Title != "trump") && !(x.Author == "AutoModerator" || x.Site == "google.com");
             string expected = "(+NOT(+title:trump+)+AND+NOT(+(+author:AutoModerator+OR+site:google.com+)+)+)";
 
             IAdvancedSearchFormatter searchFormatter = new DefaultSearchFormatter();

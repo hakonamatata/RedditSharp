@@ -10,7 +10,7 @@ using System.Net;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
-namespace RedditSharp.UnitTesting
+namespace RedditSharp.Tests
 {
     
     public class SubredditImageTests
@@ -21,7 +21,7 @@ namespace RedditSharp.UnitTesting
             Mock<IWebAgent> mockWebAgent = new Mock<IWebAgent>(MockBehavior.Strict);
             JObject json = JObject.FromObject(new { data= new { name = "TestSub" }, kind = "t5" });
 
-            Things.Subreddit sub = new Things.Subreddit(mockWebAgent.Object,json);
+            RedditSharp.Things.Subreddit sub = new RedditSharp.Things.Subreddit(mockWebAgent.Object,json);
             
             var subStyle = new SubredditStyle(sub );
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Xunit;
 
-namespace RedditSharpTests
+namespace RedditSharp.Tests
 {
     public class AuthenticatedTestsFixture
     {

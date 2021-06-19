@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace RedditSharpTests.Things
+namespace RedditSharp.Tests.Things
 {
     [Collection("AuthenticatedTests")]
     public class SubredditTests

@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>RedditSharpTests</AssemblyName>
-    <PackageId>RedditSharpTests</PackageId>
+    <AssemblyName>RedditSharp.Tests</AssemblyName>
+    <PackageId>RedditSharp.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <UserSecretsId>aspnet-RedditSharpTests</UserSecretsId>
+    <UserSecretsId>aspnet-RedditSharp.Tests</UserSecretsId>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RedditSharp\RedditSharp.csproj" />
+    <ProjectReference Include="..\..\src\RedditSharp\RedditSharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 using Xunit;
 using System.Linq.Expressions;
 using RedditSharp.Search;
-namespace RedditSharp.UnitTesting
-{
 
-    
+namespace RedditSharp.Tests
+{
     public class AdvancedSearchTest
     {
         [Fact]

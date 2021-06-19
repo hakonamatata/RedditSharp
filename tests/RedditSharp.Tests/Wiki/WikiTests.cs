@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using RedditSharp.Tests;
 using Xunit;
-namespace RedditSharpTests.Wiki
+
+namespace RedditSharp.Tests
 {
 
     [Collection("AuthenticatedTests")]

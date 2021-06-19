@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Host", "1. Host", "{29F2B8E1-BBEF-47B9-B0AC-CD31E67D7977}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedditSharp.Web", "src\RedditSharp.Web\RedditSharp.Web.csproj", "{71EC6545-1C9C-4F34-814D-76272171858A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9. Tests", "9. Tests", "{616B085F-DC9A-4701-B868-1CE1B78192C7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedditSharp.Tests", "tests\RedditSharp.Tests\RedditSharp.Tests.csproj", "{A2651FB7-774E-414F-9F4E-8CC65E822A63}"
@@ -31,18 +29,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Debug|x86.Build.0 = Debug|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Release|x86.ActiveCfg = Release|Any CPU
-		{71EC6545-1C9C-4F34-814D-76272171858A}.Release|x86.Build.0 = Release|Any CPU
 		{A2651FB7-774E-414F-9F4E-8CC65E822A63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2651FB7-774E-414F-9F4E-8CC65E822A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2651FB7-774E-414F-9F4E-8CC65E822A63}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -72,7 +58,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{71EC6545-1C9C-4F34-814D-76272171858A} = {29F2B8E1-BBEF-47B9-B0AC-CD31E67D7977}
 		{A2651FB7-774E-414F-9F4E-8CC65E822A63} = {616B085F-DC9A-4701-B868-1CE1B78192C7}
 		{6B20782F-8A65-43A1-AAF7-924F8D09A8FC} = {1F0F3F24-AED8-4F0A-8D35-A742FAD926E8}
 	EndGlobalSection
